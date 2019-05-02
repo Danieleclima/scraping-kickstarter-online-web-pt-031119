@@ -1,4 +1,6 @@
 # require libraries/modules here
+require "nokogiri"
+require "pry"
 
 require 'nokogiri'
 require 'pry'
@@ -11,6 +13,7 @@ require 'pry'
 # percent_funded: project.css("ul.project-stats li.first.funded strong").text.gsub("%","").to_i
  
 def create_project_hash
+<<<<<<< HEAD
   html = File.read('fixtures/kickstarter.html')
   kickstarter = Nokogiri::HTML(html)
  
@@ -29,3 +32,23 @@ def create_project_hash
   # return the projects hash
   projects
 end
+=======
+  
+  html = File.read('fixtures/kickstarter.html')
+  kickstarter = Nokogiri::HTML(html)
+  projects = {}
+ 
+  kickstarter.css("li.project.grid_4").each do |project|
+    projects[project] = {}
+  end
+  projects
+end
+# projects: kickstarter.css("li.project.grid_4")
+# title: project.css("h2.bbcard_name strong a").text
+# image link: project.css("div.project-thumbnail a img").attribute("src").value
+# description: project.css("p.bbcard_blurb").text
+# location: project.css("ul.project-meta span.location-name").text
+# percent_funded: project.css("ul.project-stats li.first.funded strong").text.gsub("%","").to_i
+
+create_project_hash
+>>>>>>> d328876efd321e83cb7d1f3b82854931c910d64d
